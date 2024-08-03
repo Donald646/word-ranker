@@ -4,7 +4,7 @@ import WordGame from "@/components/wordranker";
 
 export default function Home() {
   return (
-    <main>
+    <main className="flex flex-col items-center justify-center p-8 md:p-0">
    <WordGame/>
     </main>
   );
