@@ -1,62 +1,33 @@
-**To run:**
+# About Word Ranker
 
-```
-npm run dev
-```
+## What is Word Ranker?
 
-**For all Supabase mutations (SELECT, INSERT, DELETE, UPDATE, etc.)**
+Word Ranker is an innovative, crowd-sourced platform designed to assess and rank the difficulty of words in the English language. Our goal is to create a comprehensive, dynamic database of word difficulty that evolves with user input.
 
-Use @supabase-cache-helpers/postgres-swr:
+## How It Works
 
-Example: Select
+1. **Play the Game**: Users are presented with a set of random words. They arrange these words from easiest to most difficult based on their personal understanding.
 
-```
-useQuery(
+2. **Knowledge Indication**: For each word, users indicate whether they know the word or not. This crucial step helps us distinguish between perceived difficulty and actual familiarity.
 
-)
-```
+3. **Data Collection**: Once submitted, these rankings and knowledge indicators are processed and added to our database.
 
-Example: Insert
+4. **Difficulty Calculation**: We use a sophisticated Bayesian average algorithm to calculate each word's difficulty score. This method takes into account:
 
-```
-useInsertMutation(
-supabase.from("table_here"),
-[],
-""
-)
-```
+   - The word's position in users' rankings (for known words)
+   - Whether the word is known or unknown to users
+   - Historical data from previous rankings
 
-Refer to this documentation for more: link_here
+5. The scale is from 1-10, from easiest to hardest respectively. Unknown words are given the score 9 by default.
 
-All Icons are from lucide-react
+## Why Bayesian Average?
 
-For .env files create a .env.local file and enter the below keys:
+We employ a Bayesian average approach because it offers several advantages:
 
-```
-NEXT_PUBLIC_SUPABASE_URL=<VALUE_HERE>
-NEXT_PUBLIC_SUPABASE_ANON_KEY=<VALUE_HERE>
-```
+- It considers the history of all previous ratings
+- It's resistant to outliers and manipulation
+- It provides more stable and reliable scores, especially for words with few ratings
 
-For Design:
+# Extra
 
-- Use global css values from shadcn for it to adapt
-  refer to them in gloabals.css
-
-DO THIS:
-
-```
-✅ <Button className="text-foreground"></Button>
-```
-
-DON'T DO THIS:
-
-```
-❌ <Button className="text-white"></Button>
-```
-
-ARCHITECTURE:
-
-- try to avoid using api routes, instead use server actions
-
-NOTE:
-page.tsx is in (public) for navbar, you can move out if you want.
+- Ranking metric is only applied to words that the user knows
