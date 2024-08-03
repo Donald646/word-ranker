@@ -8,8 +8,8 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SaaS Boilerplate",
-  description: "Donald's SaaS boilerplate",
+  title: "Word Ranker",
+  description: "Open Sourced word ranking",
 };
 
 export default function RootLayout({
